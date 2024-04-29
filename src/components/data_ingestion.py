@@ -1,10 +1,12 @@
 import os
 import sys
+from typing import Tuple
 
 from src.exception import CustomException
 from src.logger import logging
-import pandas as pd
+from src.components.data_transformation import DataTransformation
 
+import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
@@ -18,12 +20,12 @@ class DataIngestion:
     def __init__(self) -> None:
         self.ingestion_config = DataIngestionConfig()
 
-    def initiate_data_ingestion(self):
+    def initiate_data_ingestion(self) -> Tuple[str]:
         logging.info("Entered data ingestion method or component")
         try:
             # Read dataset
             df = pd.read_csv("notebook\data\stud.csv")
-            logging.info("Read dataset as dataframe")
+            logging.info("read dataset as dataframe")
 
             # Make directory where data will be saved
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
@@ -46,4 +48,9 @@ class DataIngestion:
         
 if __name__=="__main__":
     obj = DataIngestion()
-    obj.initiate_data_ingestion()
+    train_path, test_path = obj.initiate_data_ingestion()
+
+    # Initialize data transformation
+    data_transformation = DataTransformation()
+    train_arr, test_arr, _ = data_transformation.initiate_data_transformation(train_path=train_path, test_path=test_path)
+    print(test_arr)
