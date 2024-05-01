@@ -1,7 +1,74 @@
 <html>
+    <head>
+        <title>Student Exam Performance Predictor</title>
+    </head>
+    <style>
+        /* Styles for the login form */
+        .login {
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Styles for form elements */
+       .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+       .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+       .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Styles for buttons */
+       .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            font-weight: bold;
+        }
+
+       .btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Styles for form headings */
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        h2 {
+            font-size: 18px;
+        }
+    </style>
 <body>
     <div class="login">
-       <h1>Student Exam Performance Indicator</h1>
    
        <form action="{{ url_for('predict_datapoint')}}" method="post">
         <h1>
@@ -46,42 +113,42 @@
                 placeholder="Enter you Parent Education" required>
                 <option class="placeholder" selected disabled value="">Select Parent Education</option>
                 <option value="associate's degree">
-                    associate's degree
+                    Associate's Degree
                 </option>
                 <option value="bachelor's degree">
-                    bachelor's degree
+                    Bachelor's Degree
                 </option>
                 <option value="high school">
-                    high school
+                    High School
                 </option>
                 <option value="master's degree">
-                    master's degree
+                    Master's Degree
                 </option>
                 <option value="some college">
-                    some college
+                    Some College
                 </option>
                 <option value="some high school">
-                    some high school
+                    Some High School
                 </option>
             </select>
         </div>
         <div class="mb-3">
-            <label class="form-label">Lunch Type</label>
+            <label class="form-label">Lunch</label>
             <select class="form-control" name="lunch" placeholder="Enter you Lunch" required>
                 <option class="placeholder" selected disabled value="">Select Lunch Type</option>
                 <option value="free/reduced">
-                    free/reduced
+                    Free/Reduced
                 </option>
                 <option value="standard">
-                    standard
+                    Standard
                 </option>
             </select>
         </div>
         <div class="mb-3">
-            <label class="form-label">Test preparation Course</label>
+            <label class="form-label">Test Preparation Course</label>
             <select class="form-control" name="test_preparation_course" placeholder="Enter you Course"
                 required>
-                <option class="placeholder" selected disabled value="">Select Test_course</option>
+                <option class="placeholder" selected disabled value="">Select Test Course</option>
                 <option value="none">
                     None
                 </option>
@@ -93,7 +160,7 @@
         <div class="mb-3">
             <label class="form-label">Writing Score out of 100</label>
             <input class="form-control" type="number" name="reading_score"
-                placeholder="Enter your Reading score" min='0' max='100' />
+                placeholder="Enter your Writing score" min='0' max='100' />
         </div>
         <div class="mb-3">
             <label class="form-label">Reading Score out of 100</label>
@@ -105,7 +172,7 @@
         </div>
     </form>
     <h2>
-       THE  prediction is {{results}}
+       The  predicted maths score is {{results}}
     </h2>
    <body>
 </html>
